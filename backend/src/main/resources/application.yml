@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: blood-bank-system
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/blood_bank_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:}
+    driver-class-name: ${DB_DRIVER:com.mysql.cj.jdbc.Driver}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+jwt:
+  secret: 9a6f8b12c4d3e5f7a9b0c2d4e6f8a1b3c5d7e9f0a2b4c6d8e0f1a3b5c7d9e1f2
+  expirationMs: 86400000 # 24 hours

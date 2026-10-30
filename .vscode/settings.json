@@ -1,0 +1,12 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "files.associations": {
+    "*.css": "tailwindcss",
+    "*.kts": "kotlin"
+  },
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "kotlin.languageServer.enabled": true,
+  "java.compile.nullAnalysis.mode": "automatic"
+}

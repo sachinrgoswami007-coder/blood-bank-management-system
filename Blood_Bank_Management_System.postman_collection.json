@@ -1,0 +1,313 @@
+{
+	"info": {
+		"_postman_id": "b3c9f28a-771d-4f10-91a0-bloodbank001",
+		"name": "Blood Bank Management System APIs",
+		"description": "Complete REST API Collection for Blood Bank Management System (Kotlin Spring Boot + React)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080/api",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@bloodbank.org\",\n  \"password\": \"Admin@123\",\n  \"role\": \"ADMIN\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
+						}
+					}
+				},
+				{
+					"name": "Donor Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Alex Mercer\",\n  \"email\": \"alex.mercer@example.com\",\n  \"password\": \"Donor@123\",\n  \"phone\": \"+1 (555) 321-7890\",\n  \"dateOfBirth\": \"1997-04-12\",\n  \"gender\": \"Male\",\n  \"bloodGroup\": \"O-\",\n  \"address\": \"404 Innovation Blvd\",\n  \"city\": \"Metropolis\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register/donor",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register", "donor"]
+						}
+					}
+				},
+				{
+					"name": "Hospital Registration",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"hospitalName\": \"St. Jude Trauma Center\",\n  \"email\": \"stjude@example.com\",\n  \"password\": \"Hospital@123\",\n  \"phone\": \"+1 (555) 444-3333\",\n  \"address\": \"800 Medical Way\",\n  \"city\": \"Metropolis\",\n  \"registrationNumber\": \"REG-HOSP-2026-999\",\n  \"contactPerson\": \"Dr. Marcus Brody\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register/hospital",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "register", "hospital"]
+						}
+					}
+				},
+				{
+					"name": "Get Current User Me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/me",
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "me"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "Admin Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/admin",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "admin"]
+						}
+					}
+				},
+				{
+					"name": "Donor Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/donor?donorId=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "donor"],
+							"query": [
+								{
+									"key": "donorId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				},
+				{
+					"name": "Hospital Dashboard",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/dashboard/hospital?hospitalId=1",
+							"host": ["{{baseUrl}}"],
+							"path": ["dashboard", "hospital"],
+							"query": [
+								{
+									"key": "hospitalId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Inventory",
+			"item": [
+				{
+					"name": "Public Inventory Summary",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{baseUrl}}/inventory/public/summary",
+							"host": ["{{baseUrl}}"],
+							"path": ["inventory", "public", "summary"]
+						}
+					}
+				},
+				{
+					"name": "Get All Inventory",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/inventory",
+							"host": ["{{baseUrl}}"],
+							"path": ["inventory"]
+						}
+					}
+				},
+				{
+					"name": "Add Blood Inventory Batch",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bloodGroup\": \"O+\",\n  \"units\": 10,\n  \"collectionDate\": \"2026-09-01\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inventory",
+							"host": ["{{baseUrl}}"],
+							"path": ["inventory"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "Blood Requests Workflow",
+			"item": [
+				{
+					"name": "Create Blood Request (Hospital)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"bloodGroup\": \"O+\",\n  \"requiredUnits\": 2,\n  \"urgency\": \"EMERGENCY\",\n  \"requiredDate\": \"2026-09-10\",\n  \"reason\": \"Urgent surgical transfusion\",\n  \"notes\": \"Operating Room 3\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/requests",
+							"host": ["{{baseUrl}}"],
+							"path": ["requests"]
+						}
+					}
+				},
+				{
+					"name": "Approve Blood Request",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"adminRemarks\": \"Approved based on trauma unit emergency request.\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/requests/1/approve",
+							"host": ["{{baseUrl}}"],
+							"path": ["requests", "1", "approve"]
+						}
+					}
+				},
+				{
+					"name": "Fulfill Request (Deducts Inventory)",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"adminRemarks\": \"Fulfilled 2 units O+ from batch #1.\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/requests/1/fulfill",
+							"host": ["{{baseUrl}}"],
+							"path": ["requests", "1", "fulfill"]
+						}
+					}
+				}
+			]
+		}
+	]
+}

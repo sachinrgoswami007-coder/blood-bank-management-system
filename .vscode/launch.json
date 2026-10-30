@@ -1,0 +1,30 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Frontend (Chrome)",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/frontend/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      },
+      "preLaunchTask": "Run Frontend (React + Vite)"
+    },
+    {
+      "type": "java",
+      "name": "Launch Backend (Spring Boot)",
+      "request": "launch",
+      "mainClass": "com.example.bloodbank.BloodBankApplicationKt",
+      "projectName": "blood-bank-backend",
+      "cwd": "${workspaceFolder}/backend"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Full Stack (Frontend + Backend)",
+      "configurations": ["Launch Frontend (Chrome)", "Launch Backend (Spring Boot)"]
+    }
+  ]
+}

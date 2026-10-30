@@ -1,0 +1,17 @@
+{
+  "name": "blood-bank-management-system",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Blood Management System",
+  "scripts": {
+    "start": "concurrently -n \"FRONTEND,BACKEND\" -c \"cyan,green\" \"npm --prefix frontend run dev\" \"cd backend && mvnw.cmd spring-boot:run\"",
+    "dev": "npm --prefix frontend run dev",
+    "dev:all": "npm start",
+    "backend": "cd backend && mvnw.cmd spring-boot:run",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
